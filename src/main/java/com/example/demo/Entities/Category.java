@@ -1,6 +1,8 @@
 package com.example.demo.Entities;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,9 +20,11 @@ public class Category implements Serializable {
 	private long id;
 	private String name;
 	
+	private Set<Product> producties = new HashSet<>();
+	
 	public Category() {
 	}
-
+	
 	public Category(long id, String name) {
 		super();
 		this.id = id;
@@ -41,6 +45,10 @@ public class Category implements Serializable {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public Set<Product> getProducties() {
+		return producties;
 	}
 
 	@Override
