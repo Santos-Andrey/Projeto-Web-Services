@@ -2,6 +2,8 @@ package com.example.demo.Entities;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.example.demo.Entities.enums.OrderStatus;
@@ -27,6 +30,9 @@ public class Order implements Serializable{
 	@JoinColumn(name = "Client_Id")
 	private User client;
 	
+	//Sintaxe de uma Coleção 
+	@OneToMany(mappedBy = "id.order")
+	private Set <OrderItem> itemns = new HashSet<>();
 	
 	public Order() {
 	}
@@ -74,6 +80,10 @@ public class Order implements Serializable{
 		this.client = client;
 	}
 
+	public Set<OrderItem> getItemns(){
+		return itemns;
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
