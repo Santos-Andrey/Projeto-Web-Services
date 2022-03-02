@@ -28,6 +28,7 @@ public class Order implements Serializable{
 	private long Id;
 	private Instant moment;
 	
+	
 	@OneToOne(mappedBy = "order", cascade = CascadeType.ALL)
 	private Payment paymnet;
 	
@@ -96,7 +97,18 @@ public class Order implements Serializable{
 	public void setPaymnet(Payment paymnet) {
 		this.paymnet = paymnet;
 	}
-
+	
+	
+	//Criando metodo total do pedido
+	public Double getTotal() {
+		double sum = 0.0;
+		for(OrderItem x : itemns) {
+			sum += x.getsubTotal();
+		}
+		return sum;
+	}
+	
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
